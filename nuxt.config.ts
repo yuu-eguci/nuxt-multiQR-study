@@ -1,6 +1,7 @@
+import { NuxtConfig } from '@nuxt/types'
 import colors from 'vuetify/es5/util/colors'
 
-export default {
+const nuxtConfig: NuxtConfig = {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
 
@@ -71,3 +72,5 @@ export default {
   build: {
   }
 }
+
+export default nuxtConfig
