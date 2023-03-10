@@ -1,5 +1,7 @@
 # nuxt-multiQR-study
 
+✌🏽✌🏽 In this repository, I tried to study Nuxt.js 2 + TypeScript + Object Style + Vuetify 2 + OpenCV + GitHub Pages.
+
 ## Build Setup
 
 ```bash
