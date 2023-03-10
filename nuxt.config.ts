@@ -1,6 +1,11 @@
 import { NuxtConfig } from '@nuxt/types'
 import colors from 'vuetify/es5/util/colors'
 
+// .env の内容を本ファイルで利用するための設定です。
+require('dotenv').config({
+  path: `.env.${process.env.ENV}`
+})
+
 const nuxtConfig: NuxtConfig = {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -47,6 +52,13 @@ const nuxtConfig: NuxtConfig = {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    [
+      '@nuxtjs/dotenv',
+      {
+        // 起動時に `ENV=test nuxt` というように指定することで、使用する .env.xxx を切り替えています。
+        filename: '.env.' + process.env.ENV
+      }
+    ]
   ],
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
