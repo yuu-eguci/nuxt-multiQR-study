@@ -1,0 +1,13 @@
+{
+  "indexPage": {
+    "theCanvas": {
+      "theHandwriting": "手書き",
+      "draw": "書く",
+      "eraser": "消す",
+      "reset": "リセット",
+      "download": "ダウンロード",
+      "setImageA": "画像Aを貼る",
+      "setImageB": "画像Bを貼る"
+    }
+  }
+}

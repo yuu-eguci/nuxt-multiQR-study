@@ -53,6 +53,23 @@ const nuxtConfig: NuxtConfig = {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     [
+      '@nuxtjs/i18n',
+      {
+        locales: [
+          { code: 'ja', name: 'Japanese', iso: 'ja_JP', file: 'ja.json' },
+          { code: 'en', name: 'English', iso: 'en-US', file: 'en.json' }
+        ],
+        defaultLocale: 'ja',
+        langDir: 'locales/',
+        vueI18n: {
+          fallbackLocale: 'ja'
+        },
+        vueI18nLoader: true,
+        lazy: true,
+        strategy: 'no_prefix'
+      }
+    ],
+    [
       '@nuxtjs/dotenv',
       {
         // 起動時に `ENV=test nuxt` というように指定することで、使用する .env.xxx を切り替えています。
