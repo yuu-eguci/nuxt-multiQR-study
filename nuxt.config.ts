@@ -13,6 +13,10 @@ const nuxtConfig: NuxtConfig = {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
+  router: {
+    base: '/nuxt-multiQR-study/'
+  },
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s - nuxt-multiQR-study',
@@ -27,7 +31,7 @@ const nuxtConfig: NuxtConfig = {
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/nuxt-multiQR-study/favicon.ico' }
     ]
   },
 
