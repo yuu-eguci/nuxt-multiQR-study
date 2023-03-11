@@ -12,8 +12,11 @@
   </v-app>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import Vue from 'vue'
+
+// NOTE: vue-cli と近い使用感を実現するため Object Style で実装します。
+export default Vue.extend({
   name: 'EmptyLayout',
   layout: 'empty',
   props: {
@@ -28,14 +31,28 @@ export default {
       otherError: 'An error occurred'
     }
   },
-  head () {
+  // NOTE: 返り値 Object を書くまで、
+  //       Property 'pageNotFound' does not exist on type 'CombinedVueInstance...
+  //       が出た。
+  head (): Object {
     const title =
       this.error.statusCode === 404 ? this.pageNotFound : this.otherError
     return {
       title
     }
+  },
+  mounted () {
+    // XXX: 公式ページ通り "Combined Inject" しているのに、
+    //      Property '$debug' does not exist on type 'CombinedVueInstance...
+    //      が出る。
+    //      別に画面上でエラーにはなっていないから、 VSCode 上だけ?
+    this.$debug({
+      hereIs: 'layout/error',
+      message: this.error.message,
+      statusCode: this.error.statusCode
+    })
   }
-}
+})
 </script>
 
 <style scoped>
