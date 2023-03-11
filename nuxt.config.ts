@@ -1,6 +1,7 @@
 import { NuxtConfig } from '@nuxt/types'
 import colors from 'vuetify/es5/util/colors'
 
+// dotenv.
 // .env の内容を本ファイルで利用するための設定です。
 require('dotenv').config({
   path: `.env.${process.env.ENV}`
@@ -14,7 +15,8 @@ const nuxtConfig: NuxtConfig = {
   target: 'static',
 
   router: {
-    base: '/nuxt-multiQR-study/'
+    // dotenv.
+    base: process.env.ROUTER_BASE
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -31,7 +33,8 @@ const nuxtConfig: NuxtConfig = {
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/nuxt-multiQR-study/favicon.ico' }
+      // dotenv.
+      { rel: 'icon', type: 'image/x-icon', href: `${process.env.ROUTER_BASE}favicon.ico` }
     ]
   },
 
