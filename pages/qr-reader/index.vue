@@ -72,12 +72,12 @@ export default Vue.extend({
           ctx.drawImage(image, 0, 0, (canvas as any).width, (canvas as any).height)
           // XXX: Cannot find name 'cv' が出るけど無視。ちゃんと読まれてる。
           //      head メソッドの opencv.js から読み込まれている。
-          const src = (cv as any).imread('input');
-          const dst = new cv.Mat();
-          cv.cvtColor(src, dst, cv.COLOR_RGBA2GRAY, 0);
-          cv.imshow('output', dst);
-          src.delete();
-          dst.delete();
+          const src = (cv as any).imread('input')
+          const dst = new cv.Mat()
+          cv.cvtColor(src, dst, cv.COLOR_RGBA2GRAY, 0)
+          cv.imshow('output', dst)
+          src.delete()
+          dst.delete()
         }
         (image as any).src = (e as any).target.result
       }
