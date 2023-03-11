@@ -2,7 +2,7 @@
   <v-row>
     <v-col class="text-center">
       <img
-        src="/v.png"
+        :src="`${routerBase}v.png`"
         alt="Vuetify.js"
         class="mb-5"
       >
@@ -43,6 +43,9 @@ export default Vue.extend({
     },
     a (): string {
       return this.alan
+    },
+    routerBase (): string {
+      return process.env.ROUTER_BASE!
     }
   },
   methods: {
