@@ -16,7 +16,10 @@ const nuxtConfig: NuxtConfig = {
 
   router: {
     // dotenv.
-    base: process.env.ROUTER_BASE
+    base: process.env.ROUTER_BASE,
+    // nuxt.config.js に書いた middleware はすべての page 用。
+    // WARN: ここは middlewares じゃダメ。 middleware.
+    middleware: ['access-logging']
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
