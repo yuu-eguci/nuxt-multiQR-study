@@ -98,6 +98,8 @@ export default Vue.extend({
           //       簡単にいうと、今回の目当てだった detectAndDecodeMulti は
           //       JavaScript 版の OpenCV には未実装だった。
           //       以下、 detectMulti + それぞれ decode することを試したけど難しすぎてヤメた記録。
+          //       Mat から image を切り抜いて、その image をひとつずつ decode できれば
+          //       いいんじゃないかと思うんだけどぼくにはムズイ。
 
           // detectMulti を試みる。
           // bool cv::QRCodeDetector::detectMulti(InputArray img, OutputArray points)
