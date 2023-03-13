@@ -28,6 +28,13 @@ import { getMethods } from '@/utils/FooUtils'
 //       https://github.com/opencv/opencv/issues/21776
 // import cv from '@/assets/opencv'
 
+// NOTE: TypeScript は外部 JS の cv の型を参照できない。
+//       ここで interface を定義して、 window.cv を利用可能にします。
+interface Window {
+  cv: any;
+}
+declare const window: Window
+
 // NOTE: vue-cli と近い使用感を実現するため Object Style で実装します。
 export default Vue.extend({
   name: 'QRReaderPage',
@@ -78,17 +85,19 @@ export default Vue.extend({
           // canvas#input に画像を貼ります。画像が表示されます。
           canvasContext.drawImage(image, 0, 0, (canvas as any).width, (canvas as any).height)
 
-          // XXX: Cannot find name 'cv' が出るけど無視。ちゃんと読まれてる。
-          //      head メソッドの opencv.js から読み込まれている。
-          const src: cv.Mat = cv.imread('input')
+          // NOTE: interface Window を上の方で定義することで、
+          //       Cannot find name 'cv' を回避しています。
+          // XXX: 本当は src: window.cv.Mat と書きたいが、
+          //      Cannot find namespace 'window' が出るので不可になってる。
+          const src = window.cv.imread('input')
 
           // 試しにグレースケールにすることを試す。
-          const dstGray = new cv.Mat()
-          cv.cvtColor(src, dstGray, cv.COLOR_RGBA2GRAY, 0)
+          const dstGray = new window.cv.Mat()
+          window.cv.cvtColor(src, dstGray, window.cv.COLOR_RGBA2GRAY, 0)
           // canvas#output に画像を貼ります。画像が表示されます。
-          cv.imshow('output', dstGray)
+          window.cv.imshow('output', dstGray)
 
-          const detector = new cv.QRCodeDetector()
+          const detector = new window.cv.QRCodeDetector()
           console.info(
             'このバージョンの QRCodeDetector に存在する methods 一覧:',
             getMethods(detector)
