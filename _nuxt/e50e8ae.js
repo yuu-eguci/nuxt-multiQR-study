@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[8],{425:function(e){e.exports=JSON.parse('{"indexPage":{"theCanvas":{"theHandwriting":"Handwriting","draw":"Draw","eraser":"Eraser","reset":"Reset","download":"Download","setImageA":"Set image A","setImageB":"Set image B"}}}')}}]);
