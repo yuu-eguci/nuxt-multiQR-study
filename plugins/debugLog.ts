@@ -34,7 +34,6 @@ declare module 'vuex/types/index' {
 const myPlugin: Plugin = (context, inject) => {
   // 開発環境でのみ console.log する関数を、 plugin として inject します。
   if (context.isDev) {
-    // eslint-disable-next-line no-console
     inject('debug', (...args: any[]) => console.log(...args))
     return
   }

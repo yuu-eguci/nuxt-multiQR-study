@@ -1,0 +1,5 @@
+.git
+.nuxt
+dist
+docs
+node_modules

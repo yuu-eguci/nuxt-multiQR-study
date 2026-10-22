@@ -21,11 +21,8 @@ export default Vue.extend({
     // const foo: string = ''
     // console.log(foo)
 
-    // eslint-disable-next-line
     console.info(foo())
-    // eslint-disable-next-line
     console.info(bar())
-    // eslint-disable-next-line
     console.info(new Baz(1, 2))
   }
 })
