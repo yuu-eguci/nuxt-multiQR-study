@@ -1,6 +1,8 @@
 .git
 .nuxt
+.output
+.data
 dist
 docs
 node_modules
-static/opencv
+public/opencv

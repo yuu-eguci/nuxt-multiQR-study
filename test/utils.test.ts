@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { Baz, bar, foo, getMethods } from '../utils'
+import { Baz, bar, foo, getMethods } from '../app/utils'
 
 describe('utils', () => {
   it('foo は現在時刻の Date を返します', () => {
