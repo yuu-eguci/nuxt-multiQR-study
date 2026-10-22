@@ -45,9 +45,17 @@ describe('GitHub Pages への deploy', () => {
 })
 
 describe('package.json の scripts', () => {
-  it('build / generate は .env.local_ を読み込みます', () => {
-    expect(packageJson.scripts.build).toBe('ENV=local_ nuxt build')
-    expect(packageJson.scripts.generate).toBe('ENV=local_ nuxt generate')
-    expect(packageJson.scripts.start).toBe('ENV=local_ nuxt start')
+  it('dev / build / generate は .env.local_ を読み込みます', () => {
+    expect(packageJson.scripts.dev).toBe('nuxt dev --dotenv .env.local_')
+    expect(packageJson.scripts.build).toBe('nuxt build --dotenv .env.local_')
+    expect(packageJson.scripts.generate).toBe('nuxt generate --dotenv .env.local_')
+  })
+
+  it('GitHub Pages 用の generate は .env.github-pages を読み込みます', () => {
+    expect(packageJson.scripts['generate-for-github-pages']).toBe('nuxt generate --dotenv .env.github-pages')
+  })
+
+  it('start は build 済みの Nitro サーバを起動します', () => {
+    expect(packageJson.scripts.start).toBe('node .output/server/index.mjs')
   })
 })

@@ -1,18 +1,18 @@
 nuxt-multiQR-study
 ===
 
-In this repository, I tried to study Nuxt.js 2 (inject + middleware + utils + page + container + presentational) + TypeScript + Object Style + Vuetify + @nuxtjs/dotenv + @nuxtjs/i18n + OpenCV + GitHub Pages.
+In this repository, I tried to study Nuxt (inject + middleware + utils + page + container + presentational) + TypeScript + Object Style + Vuetify + dotenv + @nuxtjs/i18n + OpenCV + GitHub Pages.
 
-Nuxt 2 で、画像をアップロードして OpenCV.js でグレースケール化するところまでを試した学習用リポジトリ。
+画像を選び、 OpenCV.js でグレースケール化する学習用リポジトリ。
 
 - Node.js: 24.22.1 (LTS)
 - Package manager: Yarn 1.22.22
-- Framework: Nuxt 2.18 + Vue 2.7 + Vuetify 2.7 + TypeScript
+- Framework: Nuxt 4.6 + Vue 3.5 + Vuetify 4.3 + @nuxtjs/i18n 10 + TypeScript
 - Linter: ESLint
 - Test: Vitest
 - Docker: 対応!
 
-Nuxt 2 / Vue 2 / Vuetify 2 は公式サポートは終了済み。依存関係の既知の脆弱性のうち、 Nuxt 2 系のままでは解消できないものは [docs/security.md](docs/security.md) にまとめた。
+依存関係の脆弱性の状況は [docs/security.md](docs/security.md) にまとめた。
 
 ## Pages
 
@@ -21,9 +21,11 @@ Nuxt 2 / Vue 2 / Vuetify 2 は公式サポートは終了済み。依存関係�
 - `/sample-page` : page + container + presentational と utils のサンプル
 - `/inspire` : Nuxt テンプレートのサンプル
 
+`ssr: false` の SPA 。 i18n は `ja` (既定) と `en` の文言を `i18n/locales/` に置き、 `strategy: no_prefix` で URL は変えない。ブラウザの言語が `en` なら `en` を使う。
+
 ## パッと実行してみたい
 
-OpenCV.js は npm パッケージ `@techstark/opencv-js` を `yarn install` 時に `static/opencv/opencv.js` へコピーし、同じオリジンから読み込む。 docs.opencv.org の opencv.js は別オリジンからの読み込みが拒否されるため使わない。
+OpenCV.js は npm パッケージ `@techstark/opencv-js` を `yarn install` 時に `public/opencv/opencv.js` へコピーし、同じオリジンから読み込む。 docs.opencv.org の opencv.js は別オリジンからの読み込みが拒否されるため使わない。
 
 Node.js のバージョンは `.node-version` と `package.json` の `engines` / `volta` で 24.22.1 を指定。
 
@@ -31,7 +33,7 @@ Node.js のバージョンは `.node-version` と `package.json` の `engines` /
 # install dependencies
 $ yarn install --frozen-lockfile
 
-# serve with hot reload at localhost:3000
+# serve with hot reload at localhost:3000 (.env.local_)
 $ yarn dev
 
 # lint, type check and test
@@ -39,19 +41,24 @@ $ yarn lint
 $ yarn typecheck
 $ yarn test
 
-# generate static project (.env.local_) and serve it at localhost:3000
-$ yarn generate
+# build for Node.js server (.env.local_) and serve it at localhost:3000
+$ yarn build
 $ yarn start
 
-# generate static project for GitHub Pages (.env.github-pages)
+# generate static files (.env.local_) into .output/public
+$ yarn generate
+
+# generate static files for GitHub Pages (.env.github-pages, baseURL /nuxt-multiQR-study/)
 $ yarn generate-for-github-pages
 ```
 
-For detailed explanation on how things work, check out the [documentation](https://v2.nuxt.com/).
+`.env.*` の `ROUTER_BASE` は `nuxt.config.ts` で `app.baseURL` になる。
+
+For detailed explanation on how things work, check out the [documentation](https://nuxt.com/docs/4.x).
 
 ## Docker
 
-ホストに Node.js を入れずに、 lint / test / generate をしてから `nuxt start` で配信。
+ホストに Node.js を入れずに、 lint / typecheck / test / build をしてから `node .output/server/index.mjs` で配信。
 
 ```bash
 docker build -t nuxt-multiqr-study .
@@ -64,50 +71,16 @@ docker run --rm -p 127.0.0.1:3000:3000 nuxt-multiqr-study
 - `.github/workflows/ci.yml` : push / pull request で lint / typecheck / test / generate を実行。
 - `.github/workflows/cd-github-pages.yml` : GitHub Pages への deploy。 Actions 画面からの手動実行 (`workflow_dispatch`) のみ。
 
-## Special Directories
+## Directories
 
-You can create the following extra directories, some of which have special behaviors. Only `pages` is required; you can delete them if you don't want to use their functionality.
+Nuxt 4 では、アプリのコードは `app/` 以下に置く。
 
-### `assets`
-
-The assets directory contains your uncompiled assets such as Stylus or Sass files, images, or fonts.
-
-More information about the usage of this directory in [the documentation](https://v2.nuxt.com/docs/directory-structure/assets).
-
-### `components`
-
-The components directory contains your Vue.js components. Components make up the different parts of your page and can be reused and imported into your pages, layouts and even other components.
-
-More information about the usage of this directory in [the documentation](https://v2.nuxt.com/docs/directory-structure/components).
-
-### `layouts`
-
-Layouts are a great help when you want to change the look and feel of your Nuxt app, whether you want to include a sidebar or have distinct layouts for mobile and desktop.
-
-More information about the usage of this directory in [the documentation](https://v2.nuxt.com/docs/directory-structure/layouts).
-
-### `pages`
-
-This directory contains your application views and routes. Nuxt will read all the `*.vue` files inside this directory and setup Vue Router automatically.
-
-More information about the usage of this directory in [the documentation](https://v2.nuxt.com/docs/get-started/routing).
-
-### `plugins`
-
-The plugins directory contains JavaScript plugins that you want to run before instantiating the root Vue.js Application. This is the place to add Vue plugins and to inject functions or constants. Every time you need to use `Vue.use()`, you should create a file in `plugins/` and add its path to plugins in `nuxt.config.ts`.
-
-More information about the usage of this directory in [the documentation](https://v2.nuxt.com/docs/directory-structure/plugins).
-
-### `static`
-
-This directory contains your static files. Each file inside this directory is mapped to `/`.
-
-Example: `/static/robots.txt` is mapped as `/robots.txt`.
-
-More information about the usage of this directory in [the documentation](https://v2.nuxt.com/docs/directory-structure/static).
-
-### `store`
-
-This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
-
-More information about the usage of this directory in [the documentation](https://v2.nuxt.com/docs/directory-structure/store).
+- `app/pages/` : ページ。ファイル構成から Vue Router のルートが自動で作られる。 [docs](https://nuxt.com/docs/4.x/directory-structure/app/pages)
+- `app/components/` : コンポーネント。自動 import される。 `qr-reader/` と `sample-page/` は container (処理・状態管理) と presentational (表示) に分けている。 [docs](https://nuxt.com/docs/4.x/directory-structure/app/components)
+- `app/layouts/` : レイアウト。 `default.vue` が全ページで使われる。 [docs](https://nuxt.com/docs/4.x/directory-structure/app/layouts)
+- `app/error.vue` : エラーページ。 [docs](https://nuxt.com/docs/4.x/directory-structure/app/error)
+- `app/plugins/` : アプリ起動前に実行される。 `debugLog.client.ts` は `$debug` を provide し、開発時だけ `console.log` する。 [docs](https://nuxt.com/docs/4.x/directory-structure/app/plugins)
+- `app/middleware/` : ルート遷移ごとに実行される。 `.global` を付けると全ページに適用される。 [docs](https://nuxt.com/docs/4.x/directory-structure/app/middleware)
+- `app/utils/` : `export function` と `export class` のサンプル。 [docs](https://nuxt.com/docs/4.x/directory-structure/app/utils)
+- `public/` : そのまま `baseURL` 直下に配信される静的ファイル。 [docs](https://nuxt.com/docs/4.x/directory-structure/public)
+- `i18n/locales/` : @nuxtjs/i18n の文言ファイル。

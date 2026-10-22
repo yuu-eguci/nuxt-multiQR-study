@@ -71,6 +71,10 @@ typings/
 # Nuxt generate
 dist
 
+# Nuxt 4 build output
+.output
+.data
+
 # vuepress build output
 .vuepress/dist
 
@@ -90,4 +94,4 @@ sw.*
 *.swp
 
 # yarn install 時に @techstark/opencv-js からコピーします
-static/opencv/
+public/opencv/

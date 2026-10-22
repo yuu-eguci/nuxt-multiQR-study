@@ -1,4 +1,4 @@
-// @techstark/opencv-js の opencv.js を static/opencv/ へコピーします。
+// @techstark/opencv-js の opencv.js を public/opencv/ へコピーします。
 // docs.opencv.org の opencv.js は別オリジンからの読み込みが拒否されるため、同じオリジンから配信します。
 import { copyFileSync, mkdirSync } from 'node:fs'
 import { createRequire } from 'node:module'
@@ -15,5 +15,5 @@ export function copyOpenCv (staticDir) {
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  copyOpenCv(join(dirname(fileURLToPath(import.meta.url)), '..', 'static'))
+  copyOpenCv(join(dirname(fileURLToPath(import.meta.url)), '..', 'public'))
 }

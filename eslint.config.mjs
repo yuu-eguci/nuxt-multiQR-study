@@ -4,10 +4,10 @@ import globals from 'globals'
 import tseslint from 'typescript-eslint'
 
 export default tseslint.config(
-  { ignores: ['.nuxt/', 'dist/', 'node_modules/', 'static/'] },
+  { ignores: ['.nuxt/', '.output/', '.data/', 'node_modules/', 'public/'] },
   js.configs.recommended,
   ...tseslint.configs.recommended,
-  ...pluginVue.configs['flat/vue2-essential'],
+  ...pluginVue.configs['flat/essential'],
   {
     files: ['**/*.vue'],
     languageOptions: {
@@ -19,9 +19,15 @@ export default tseslint.config(
       globals: { ...globals.browser, ...globals.node }
     },
     rules: {
-      // 学習用のため any や require を使っている箇所があります。
-      '@typescript-eslint/no-explicit-any': 'off',
-      '@typescript-eslint/no-require-imports': 'off'
+      // 学習用のため window.cv などで any を使っています。
+      '@typescript-eslint/no-explicit-any': 'off'
+    }
+  },
+  {
+    // Nuxt の自動 import (defineComponent, useHead など) は TypeScript の型チェックで検証します。
+    files: ['**/*.ts', '**/*.vue'],
+    rules: {
+      'no-undef': 'off'
     }
   }
 )
