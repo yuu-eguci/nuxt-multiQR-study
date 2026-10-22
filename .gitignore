@@ -88,3 +88,6 @@ sw.*
 
 # Vim swap files
 *.swp
+
+# yarn install 時に @techstark/opencv-js からコピーします
+static/opencv/

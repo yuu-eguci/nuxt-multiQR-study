@@ -11,6 +11,7 @@
     "yarn": "1.22.22"
   },
   "scripts": {
+    "postinstall": "node scripts/copy-opencv.mjs",
     "dev": "ENV=local_ nuxt",
     "build": "ENV=local_ nuxt build",
     "start": "ENV=local_ nuxt start",
@@ -22,6 +23,7 @@
   },
   "dependencies": {
     "@nuxtjs/i18n": "^7.3.1",
+    "@techstark/opencv-js": "4.12.0-release.1",
     "core-js": "^3.51.0",
     "nuxt": "^2.18.1",
     "vue": "^2.7.16",
