@@ -38,13 +38,13 @@ declare const window: Window
 export default Vue.extend({
   name: 'QRReaderPage',
   // NOTE: 外部 JS はこう読み込む。
-  //       もし opencv.js を docs.opencv.org から取得するならこう。
+  //       docs.opencv.org の opencv.js は別オリジンからの読み込みが拒否されるため、
+  //       yarn install 時に static/opencv/ へコピーした @techstark/opencv-js を読み込みます。
   head() {
     return {
       script: [
         {
-          // src: 'https://docs.opencv.org/5.x/opencv.js'
-          src: 'https://docs.opencv.org/4.x/opencv.js'
+          src: `${process.env.ROUTER_BASE}opencv/opencv.js`
         }
       ]
     }

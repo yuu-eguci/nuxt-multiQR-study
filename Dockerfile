@@ -1,6 +1,7 @@
 FROM node:24.22.1-bookworm-slim AS build
 WORKDIR /app
 COPY package.json yarn.lock ./
+COPY scripts ./scripts
 RUN yarn install --frozen-lockfile && yarn cache clean
 COPY . .
 RUN yarn lint && yarn typecheck && yarn test && yarn generate

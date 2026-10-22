@@ -21,3 +21,8 @@
 `nuxt start` と Docker イメージは generate 済みの静的ファイルを Node.js (`@nuxt/server`) で配信する。 Docker イメージ内では `HOST=0.0.0.0` で待ち受けるため、どこまで公開されるかは `docker run -p` の指定で決まる。 README の例は `127.0.0.1` だけに公開する。
 
 根本的な解消には Nuxt 3 以降 / Vue 3 / Vuetify 3 への移行が必要。
+
+## OpenCV.js
+
+- `/qr-reader` は npm パッケージ `@techstark/opencv-js` (OpenCV.js の非公式ビルド) を同じオリジンから配信する。
+- バージョンは `package.json` で完全一致に固定し、 `yarn.lock` の integrity で中身を検証する。

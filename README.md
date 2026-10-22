@@ -23,6 +23,8 @@ Nuxt 2 / Vue 2 / Vuetify 2 は公式サポートは終了済み。依存関係�
 
 ## パッと実行してみたい
 
+OpenCV.js は npm パッケージ `@techstark/opencv-js` を `yarn install` 時に `static/opencv/opencv.js` へコピーし、同じオリジンから読み込む。 docs.opencv.org の opencv.js は別オリジンからの読み込みが拒否されるため使わない。
+
 Node.js のバージョンは `.node-version` と `package.json` の `engines` / `volta` で 24.22.1 を指定。
 
 ```bash
