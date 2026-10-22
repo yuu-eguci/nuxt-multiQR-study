@@ -2,26 +2,47 @@
   "name": "nuxt-multiQR-study",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": ">=24.22.1 <25"
+  },
+  "packageManager": "yarn@1.22.22",
+  "volta": {
+    "node": "24.22.1",
+    "yarn": "1.22.22"
+  },
   "scripts": {
     "dev": "ENV=local_ nuxt",
-    "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate",
-    "generate-for-github-pages": "ENV=github-pages nuxt generate"
+    "build": "ENV=local_ nuxt build",
+    "start": "ENV=local_ nuxt start",
+    "generate": "ENV=local_ nuxt generate",
+    "generate-for-github-pages": "ENV=github-pages nuxt generate",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
   },
   "dependencies": {
     "@nuxtjs/i18n": "^7.3.1",
-    "core-js": "^3.25.3",
-    "nuxt": "^2.15.8",
-    "vue": "^2.7.10",
-    "vue-server-renderer": "^2.7.10",
-    "vue-template-compiler": "^2.7.10",
-    "vuetify": "^2.6.10"
+    "core-js": "^3.51.0",
+    "nuxt": "^2.18.1",
+    "vue": "^2.7.16",
+    "vue-server-renderer": "^2.7.16",
+    "vue-template-compiler": "^2.7.16",
+    "vuetify": "^2.7.2"
   },
   "devDependencies": {
-    "@nuxt/types": "^2.15.8",
-    "@nuxt/typescript-build": "^2.1.0",
-    "@nuxtjs/dotenv": "^1.4.1",
-    "@nuxtjs/vuetify": "^1.12.3"
+    "@eslint/js": "^10",
+    "@nuxt/types": "^2.18.1",
+    "@nuxt/typescript-build": "^3.0.2",
+    "@nuxtjs/dotenv": "^1.4.2",
+    "@nuxtjs/vuetify": "^1.12.3",
+    "@types/node": "^24.19.2",
+    "eslint": "^10.13.0",
+    "eslint-plugin-vue": "^10.11.1",
+    "globals": "^17.13.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.72.0",
+    "vite": "^8",
+    "vitest": "^5.0.5",
+    "vue-eslint-parser": "^10"
   }
 }

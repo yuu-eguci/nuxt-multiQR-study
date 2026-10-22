@@ -21,7 +21,6 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import QRReaderContainer from '@/components/qr-reader/container/QRReaderContainer.vue'
 import { getMethods } from '@/utils/FooUtils'
 // NOTE: これは opencv/opencv.git から自力でビルドしたもの。
 //       ただしバグがあり、下の方の "return cv.ready" を "return cv" へ書き換える必要がある。
@@ -49,9 +48,6 @@ export default Vue.extend({
         }
       ]
     }
-  },
-  components: {
-    QRReaderContainer
   },
   data: () => ({
     // 型はこう書く。

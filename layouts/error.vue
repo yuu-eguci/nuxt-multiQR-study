@@ -34,7 +34,7 @@ export default Vue.extend({
   // NOTE: 返り値 Object を書くまで、
   //       Property 'pageNotFound' does not exist on type 'CombinedVueInstance...
   //       が出た。
-  head (): Object {
+  head (): object {
     const title =
       this.error.statusCode === 404 ? this.pageNotFound : this.otherError
     return {

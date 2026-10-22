@@ -28,7 +28,8 @@
       "@types/node",
       "vuetify",
       "@nuxtjs/i18n"
-    ]
+    ],
+    "skipLibCheck": true
   },
   "exclude": [
     "node_modules",
