@@ -1,8 +1,9 @@
-# nuxt-multiQR-study
+nuxt-multiQR-study
+===
 
-✌🏽✌🏽 In this repository, I tried to study Nuxt.js 2 (inject + middleware + utils + page + container + presentational) + TypeScript + Object Style + Vuetify + @nuxtjs/dotenv + @nuxtjs/i18n + OpenCV + GitHub Pages.
+In this repository, I tried to study Nuxt.js 2 (inject + middleware + utils + page + container + presentational) + TypeScript + Object Style + Vuetify + @nuxtjs/dotenv + @nuxtjs/i18n + OpenCV + GitHub Pages.
 
-Nuxt 2 で、画像をアップロードして OpenCV.js でグレースケール化するところまでを試した学習用リポジトリです。
+Nuxt 2 で、画像をアップロードして OpenCV.js でグレースケール化するところまでを試した学習用リポジトリ。
 
 - Node.js: 24.22.1 (LTS)
 - Package manager: Yarn 1.22.22
@@ -11,18 +12,18 @@ Nuxt 2 で、画像をアップロードして OpenCV.js でグレースケー�
 - Test: Vitest
 - Docker: 対応!
 
-Nuxt 2 / Vue 2 / Vuetify 2 は公式サポートが終了しています。依存関係の既知の脆弱性のうち、 Nuxt 2 系のままでは解消できないものは [docs/security.md](docs/security.md) にまとめています。
+Nuxt 2 / Vue 2 / Vuetify 2 は公式サポートは終了済み。依存関係の既知の脆弱性のうち、 Nuxt 2 系のままでは解消できないものは [docs/security.md](docs/security.md) にまとめた。
 
 ## Pages
 
 - `/` : トップページ
-- `/qr-reader` : 画像を選ぶと、左の canvas に元画像、右の canvas にグレースケール画像を表示します。 OpenCV.js は `https://docs.opencv.org/4.x/opencv.js` から読み込みます。
+- `/qr-reader` : 画像を選ぶと、 `canvas#input` に元画像、 `canvas#output` に OpenCV.js でグレースケール化した画像を表示。
 - `/sample-page` : page + container + presentational と utils のサンプル
 - `/inspire` : Nuxt テンプレートのサンプル
 
-## Build Setup
+## パッと実行してみたい
 
-Node.js のバージョンは `.node-version` と `package.json` の `engines` / `volta` で 24.22.1 に固定しています。
+Node.js のバージョンは `.node-version` と `package.json` の `engines` / `volta` で 24.22.1 を指定。
 
 ```bash
 # install dependencies
@@ -48,18 +49,18 @@ For detailed explanation on how things work, check out the [documentation](https
 
 ## Docker
 
-ホストに Node.js を入れずに、 lint / test / generate をしてから `nuxt start` で配信します。
+ホストに Node.js を入れずに、 lint / test / generate をしてから `nuxt start` で配信。
 
 ```bash
 docker build -t nuxt-multiqr-study .
-docker run --rm -p 3000:3000 nuxt-multiqr-study
+docker run --rm -p 127.0.0.1:3000:3000 nuxt-multiqr-study
 # http://localhost:3000/
 ```
 
 ## CI / Deploy
 
-- `.github/workflows/ci.yml` : push / pull request で lint / typecheck / test / generate を実行します。
-- `.github/workflows/cd-github-pages.yml` : GitHub Pages への deploy です。意図しない公開を避けるため、 Actions 画面から手動 (`workflow_dispatch`) でのみ実行します。
+- `.github/workflows/ci.yml` : push / pull request で lint / typecheck / test / generate を実行。
+- `.github/workflows/cd-github-pages.yml` : GitHub Pages への deploy。 Actions 画面からの手動実行 (`workflow_dispatch`) のみ。
 
 ## Special Directories
 
